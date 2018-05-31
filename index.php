@@ -19,7 +19,7 @@ if($method == 'POST'){
     	$desc = $jsonWeather->weather->description;
     	$name = $jsonWeather->name;
     
-    	$speech = "It looks like in " . $name . " it's " + $temp + " degrees, with " + $desc + ".";
+    	$speech = "It looks like in " . $name . " it's " . $temp . " degrees, with " . $desc . ".";
 	
 	$response = new \stdClass();
 	$response->fulfillmentText = $speech;
