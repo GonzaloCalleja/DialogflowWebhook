@@ -15,9 +15,14 @@ if($method == 'POST'){
     	$requestWeather = file_get_contents($url);
 	$jsonWeather = json_decode($requestWeather);
 	
+	$temp = $jsonWeather->main->temp;
+    	$desc = $jsonWeather->weather->description;
+    	$name = $jsonWeather->name;
+    
+    	$speech = "It looks like in " . $name . " it's " + $temp + " degrees, with " + $desc + ".";
+	
 	$response = new \stdClass();
-	$response->fulfillmentText = $jsonWeather->name;
-	$response->test = $city;
+	$response->fulfillmentText = $speech;
 	
 	echo json_encode($response);
 }
