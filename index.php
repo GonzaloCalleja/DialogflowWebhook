@@ -16,7 +16,7 @@ if($method == 'POST'){
 	$jsonWeather = json_decode($requestWeather);
 	
 	$temp = $jsonWeather->main->temp;
-    	$desc = $jsonWeather->weather->description;
+    	$desc = $jsonWeather->weather[0]->description;
     	$name = $jsonWeather->name;
     
     	$speech = "It looks like in " . $name . " it's " . $temp . " degrees, with " . $desc . ".";
