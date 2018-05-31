@@ -7,25 +7,18 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$text = $json->queryResult->parameters->text;
-
-	switch ($text) {
-		case 'hi':
-			$speech = "Hi, Nice to meet you";
-			break;
-
-		case 'bye':
-			$speech = "Bye, good night";
-			break;
-
-		case 'anything':
-			$speech = "Yes, you can type anything here.";
-			break;
-		
-		default:
-			$speech = "Sorry, I didnt get that. Please ask me something else.";
-			break;
-	}
+	 $city = $json->queryResult->parameters->geo-city;
+    
+    	$url = 'http://api.openweathermap.org/data/2.5/weather?q=' + $city + '&units=metric&appid=91418790fd46c207c3a5fa5b1411018a';
+    
+    	$requestWeather = file_get_contents(url);
+	$jsonWeather = json_decode($requestBody);
+    
+   	$temp = $jsonWeather->main->temp;
+   	$desc = $jsonWeather->weather->description;
+   	$name = $jsonWeather->name
+    
+    	$speech = "It looks like in " + $name + " it's " + $temp + " degrees, with " + $desc + ".";
 
 	$response = new \stdClass();
 	$response->fulfillmentText = $speech;
