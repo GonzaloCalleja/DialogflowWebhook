@@ -10,8 +10,11 @@ if($method == 'POST'){
     	$requestWeather = file_get_contents($url);
 	
 	$jsonWeather = json_decode($requestWeather);
-
-	echo json_encode($jsonWeather);
+	
+	$response = new \stdClass();
+	$response->fulfillmentText = $jsonWeather->name;
+	
+	echo json_encode($response);
 }
 else
 {
