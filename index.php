@@ -11,7 +11,7 @@ if($method == 'POST'){
 	
 	$jsonWeather = json_decode($requestWeather);
 
-	echo $jsonWeather;
+	echo json_encode($jsonWeather);
 }
 else
 {
